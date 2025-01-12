@@ -76,7 +76,7 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
                           controller: tabcontroller,
                           children: const [
                             LoginScreen(),
-                            SignupScreen(),
+                            SignUpScreen(),
                           ],
                         ),
                       ),

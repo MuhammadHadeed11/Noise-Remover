@@ -5,25 +5,25 @@ class LoginController extends GetxController{
 
   static LoginController get instance => Get.find();
 
-  var  isRed = false.obs;
+  var  isRedEmail = false.obs;
+  var  isRedPassword = false.obs;
 
 
 
-   String? validateEmail(String? value) {
+   validateEmail(String? value) {
     if (value == null || value.isEmpty) {
-    isRed.value =true;
+    isRedEmail.value =true;
     }else{
-      isRed.value =false;
+      isRedEmail.value =false;
     }
     return null;
-
   }
 
   validatePassword(String? value) {
     if (value == null || value.isEmpty) {
-      isRed.value =true;
+      isRedPassword.value =true;
     }else{
-      isRed.value =false;
+      isRedPassword.value =false;
     }
   }
 

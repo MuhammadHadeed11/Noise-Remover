@@ -10,12 +10,12 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 final controller = Get.put(LoginController());
-    final _formkey= GlobalKey<FormState>();
+    final formkey= GlobalKey<FormState>();
     return ListView(
         children:[ Column(
           children: [
             Form(
-                key: _formkey,
+                key: formkey,
                 child: Padding(
                   padding: const EdgeInsets.only(top: 16,left: 32,right: 32),
                   child: Column(
@@ -70,12 +70,11 @@ final controller = Get.put(LoginController());
                       Obx(
                             ()=> TextFormField(
                           validator: (value) =>controller.validateEmail(value),
-
                           style: const TextStyle(color: Colors.white),
                           decoration: InputDecoration(
                             labelText: NTexts.email,
-                            fillColor: controller.isRed.value
-                                ? NColors.errorBackgroundColor : Colors.black,
+                            fillColor: controller.isRedEmail.value
+                                ? NColors.errorBackgroundColor : NColors.elevatedBackgroudcolor,
                           ),
                         ),
                       ),
@@ -87,7 +86,8 @@ final controller = Get.put(LoginController());
                           style: const TextStyle(color: Colors.white),
                           decoration: InputDecoration(
                             labelText: NTexts.password,
-                            fillColor: controller.isRed.value ? NColors.errorBackgroundColor : Colors.black,
+                            fillColor: controller.isRedPassword.value
+                                ? NColors.errorBackgroundColor : NColors.elevatedBackgroudcolor,
                           ),
                         ),
                       ),
@@ -102,12 +102,11 @@ final controller = Get.put(LoginController());
                       SizedBox(
                         width: double.infinity,
                         child: ElevatedButton(onPressed: (){
-                          if(_formkey.currentState!.validate()){
+                          if(formkey.currentState!.validate()){
                           }
                         },
                             style: ElevatedButton.styleFrom(
                                 side: const BorderSide(color: NColors.primaryColor),
-                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                                 foregroundColor: Colors.black,
                                 backgroundColor: NColors.primaryColor
                             ),
