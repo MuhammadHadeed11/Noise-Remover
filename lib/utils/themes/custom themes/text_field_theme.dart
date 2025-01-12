@@ -9,11 +9,7 @@ static InputDecorationTheme inputDecorationTheme=InputDecorationTheme(
         borderSide: BorderSide.none,
         borderRadius: BorderRadius.circular(14)),
     floatingLabelStyle:
-    const TextStyle(color: NColors.primary),
-    errorBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(14),
-        borderSide: const BorderSide(color: Colors.red)),
-    //ss
+    const TextStyle(color: NColors.primaryColor),
     filled: true,
     fillColor:  const Color(0xff131313),
 

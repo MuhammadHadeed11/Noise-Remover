@@ -1,29 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:noise_remover/utils/validation/validation.dart';
-
+import 'package:get/get.dart';
+import 'package:noise_remover/Authentication/controller/signup_controller.dart';
 import '../../utils/constants/colors.dart';
 import '../../utils/constants/images.dart';
 import '../../utils/constants/texts.dart';
 
-class SignupScreen extends StatefulWidget {
+class SignupScreen extends StatelessWidget {
   const SignupScreen({super.key});
 
   @override
-  State<SignupScreen> createState() => _SignupScreenState();
-}
-
-class _SignupScreenState extends State<SignupScreen> {
-  @override
   Widget build(BuildContext context) {
-    String? errorMassage;
-    final _formkey = GlobalKey<FormState>();
+    final TextEditingController textController = TextEditingController();
+    final controller2 = Get.put(SignUpController());
+    final formkey = GlobalKey<FormState>();
     return ListView(children: [
       Column(
         children: [
           Form(
-              key: _formkey,
+              key: formkey,
               child: Padding(
-                padding: const EdgeInsets.only(top: 16,left: 32,right: 32),
+                padding: const EdgeInsets.only(top: 16, left: 32, right: 32),
                 child: Column(
                   children: [
                     ElevatedButton(
@@ -75,55 +71,91 @@ class _SignupScreenState extends State<SignupScreen> {
                       NTexts.continueWithEmail,
                       style: TextStyle(
                           fontSize: 14,
-                          color: NColors.primary,
+                          color: NColors.primaryColor,
                           fontWeight: FontWeight.w400),
                     )),
                     const SizedBox(
                       height: 25,
                     ),
-                    TextFormField(
-                      validator: (errorMassage) =>NValidation.validateEmptyText(errorMassage),
-                      style: const TextStyle(color: Colors.white),
-                      decoration: const InputDecoration(
-                        labelText: NTexts.username,
-                        fillColor: Colors.black,
+                    Obx(
+                      () => TextFormField(
+                        validator: (value) {
+                          controller2.validUserName(value);
+                          return null;
+                        },
+                        style: const TextStyle(color: Colors.white),
+                        decoration: InputDecoration(
+                          labelText: NTexts.username,
+                          fillColor: controller2.isRed.value
+                              ? NColors.elevatedBackgroudcolor
+                              : Colors.black,
+                        ),
                       ),
                     ),
                     const SizedBox(
                       height: 16,
                     ),
-                    TextFormField(
-                      validator: (value)=> NValidation.validateEmail(value),
-                      style: const TextStyle(color: Colors.white),
-                      decoration: const InputDecoration(
+                    Obx(
+                      () => TextFormField(
+                        validator: (value) {
+                          controller2.validateEmailSignup(value);
+                          return null;
+                        },
+                        style: const TextStyle(color: Colors.white),
+                        decoration: InputDecoration(
                           labelText: NTexts.email,
-                          ),
+                          fillColor: controller2.isRed.value
+                              ? NColors.elevatedBackgroudcolor
+                              : Colors.black,
+                        ),
+                      ),
                     ),
                     const SizedBox(
                       height: 16,
                     ),
-                    TextFormField(
-                      validator: (value)=> NValidation.validatePassword(value),
-                      style: const TextStyle(color: Colors.white),
-                      decoration: const InputDecoration(
+                    Obx(
+                      () => TextFormField(
+                        validator: (value) {
+                          controller2.validatePasswordSignup(value);
+                          return null;
+                        },
+                        controller: textController,
+                        style: const TextStyle(color: Colors.white),
+                        decoration: InputDecoration(
                           labelText: NTexts.password,
-                          ),
+                          fillColor: controller2.isRed.value
+                              ? NColors.elevatedBackgroudcolor
+                              : Colors.black,
+                        ),
+                      ),
                     ),
                     const SizedBox(
                       height: 16,
                     ),
-                    TextFormField(
-                      validator: (value)=> NValidation.validatePassword(value),
-                      style: const TextStyle(color: Colors.white),
-                      decoration: const InputDecoration(
+                    Obx(
+                      () => TextFormField(
+                        validator: (value) {
+                          controller2.validConfirmPassword(value);
+                          return null;
+                        },
+                        style: const TextStyle(color: Colors.white),
+                        decoration: InputDecoration(
                           labelText: NTexts.confirmPassword,
-                          ),
+                          fillColor: controller2.isRed.value
+                              ? NColors.elevatedBackgroudcolor
+                              : Colors.black,
+                        ),
+                      ),
                     ),
                     Row(
                       children: [
-                        TextButton(onPressed: (){}, child: const Text(NTexts.forgetPassword,
-                          // textAlign: TextAlign.start,
-                          style: TextStyle(color: NColors.primary),)),
+                        TextButton(
+                            onPressed: () {},
+                            child: const Text(
+                              NTexts.forgetPassword,
+                              // textAlign: TextAlign.start,
+                              style: TextStyle(color: NColors.primaryColor),
+                            )),
                       ],
                     ),
                     const SizedBox(
@@ -133,12 +165,11 @@ class _SignupScreenState extends State<SignupScreen> {
                       width: double.infinity,
                       child: ElevatedButton(
                           onPressed: () {
-                            if(_formkey.currentState!.validate()){
-                          }
-    },
+                            if (formkey.currentState!.validate()) {}
+                          },
                           style: ElevatedButton.styleFrom(
-                              side: const BorderSide(color: NColors.primary),
-                              backgroundColor: NColors.primary),
+                              side: const BorderSide(color: NColors.primaryColor),
+                              backgroundColor: NColors.primaryColor),
                           child: const Text(
                             NTexts.signup,
                             style: TextStyle(fontSize: 14),
@@ -147,9 +178,14 @@ class _SignupScreenState extends State<SignupScreen> {
                     const SizedBox(
                       height: 16,
                     ),
-                    const Padding(padding: EdgeInsets.only(left: 50,right: 50),
-                        child: Text(NTexts.detail,textAlign: TextAlign.center,
-                            style: TextStyle(fontSize: 14, color: Colors.white,fontWeight: FontWeight.w400))),
+                    const Padding(
+                        padding: EdgeInsets.only(left: 50, right: 50),
+                        child: Text(NTexts.detail,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: 14,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w400))),
                     const SizedBox(
                       height: 16,
                     ),

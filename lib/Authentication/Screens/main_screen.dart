@@ -15,13 +15,13 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
-    TabController _tabcontroller= TabController(length: 2, vsync: this);
+    TabController tabcontroller= TabController(length: 2, vsync: this);
     return Scaffold(
         backgroundColor: const Color(0xff2A2A2A),
         body: Column(
                     children: [
                       Container(
-                        padding: EdgeInsets.only(top: 50),
+                        padding: const EdgeInsets.only(top: 50),
                         height: 202,
                         width: double.infinity,
                         decoration: const BoxDecoration(
@@ -41,7 +41,7 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
                               ),
                               Text(
                                 NTexts.appName,
-                                style: TextStyle(fontSize: 45, color: NColors.primary, fontFamily: 'Orbitron'),
+                                style: TextStyle(fontSize: 45, color: NColors.primaryColor, fontFamily: 'Orbitron'),
                               ),
                               SizedBox(height: 30,),
                             ],
@@ -52,7 +52,7 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
                         color: Colors.black,
                         child:
                         TabBar(
-                            controller: _tabcontroller,
+                            controller: tabcontroller,
                             labelStyle: const TextStyle(
                               fontSize: 25,
                             ),
@@ -60,7 +60,7 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
                             dividerColor: Colors.transparent,
                             labelColor: Colors.white,
                             indicatorSize: TabBarIndicatorSize.tab,
-                            indicatorColor: NColors.primary,
+                            indicatorColor: NColors.primaryColor,
                             tabs: const [
                               Tab(
                                 text: NTexts.login,
@@ -73,7 +73,7 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
 
                       Flexible(
                         child: TabBarView(
-                          controller: _tabcontroller,
+                          controller: tabcontroller,
                           children: const [
                             LoginScreen(),
                             SignupScreen(),
