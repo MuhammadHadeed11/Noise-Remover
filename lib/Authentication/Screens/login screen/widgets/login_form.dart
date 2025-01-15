@@ -73,6 +73,7 @@ class LoginForm extends StatelessWidget {
                     ()=> TextFormField(
                   validator: (value) =>controller.validateEmail(value),
                   style: const TextStyle(color: Colors.white),
+                      expands: false,
                   decoration: InputDecoration(
                     labelText: NTexts.email,
                     focusedBorder: controller.isRedEmail.value
@@ -97,6 +98,7 @@ class LoginForm extends StatelessWidget {
                     ()=> TextFormField(
                   validator: (value)=> controller.validatePassword(value),
                   style: const TextStyle(color: Colors.white),
+                      expands: false,
                   decoration: InputDecoration(
                     labelText: NTexts.password,
                     focusedBorder: controller.isRedPassword.value

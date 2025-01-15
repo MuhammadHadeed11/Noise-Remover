@@ -1,10 +1,20 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
-import 'package:noise_remover/Authentication/Screens/main_screen.dart';
 import 'package:noise_remover/utils/themes/theme.dart';
+import 'package:flutter/services.dart';
 
+import 'Authentication/Screens/main screen/main_screen.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(DevicePreview(
+    enabled: true,
+    builder: (context) =>const MyApp(),));
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown
+  ]);
+
 }
 
 class MyApp extends StatelessWidget {
@@ -17,8 +27,8 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.system,
       theme: NTheme.theme,
       darkTheme: NTheme.theme,
-      home: const MainScreen(),
-      debugShowCheckedModeBanner: false,
+        debugShowCheckedModeBanner: false,
+      home:  MainScreen(),
     );
   }
 }

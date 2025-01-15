@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/images.dart';
 import '../../../../utils/constants/texts.dart';
@@ -72,6 +71,7 @@ class SignUpForm extends StatelessWidget {
                     ()=> TextFormField(
                   validator: (value) =>controller.validUserName(value),
                   style: const TextStyle(color: Colors.white),
+                  expands: false,
                   decoration: InputDecoration(
                     labelText: NTexts.username,
                     focusedBorder: controller.isRedUserName.value
@@ -96,6 +96,7 @@ class SignUpForm extends StatelessWidget {
                     ()=> TextFormField(
                   validator: (value)=> controller.validateEmailSignup(value),
                   style: const TextStyle(color: Colors.white),
+                      expands: false,
                   decoration: InputDecoration(
                     labelText: NTexts.email,
                     focusedBorder: controller.isRedEmail.value
@@ -120,6 +121,7 @@ class SignUpForm extends StatelessWidget {
                     ()=> TextFormField(
                   validator: (value) =>controller.validatePasswordSignup(value),
                   style: const TextStyle(color: Colors.white),
+                      expands: false,
                   decoration: InputDecoration(
                     labelText: NTexts.password,
                     focusedBorder: controller.isRedPassword.value
@@ -144,6 +146,7 @@ class SignUpForm extends StatelessWidget {
                     ()=> TextFormField(
                   validator: (value)=> controller.validConfirmPassword(value),
                   style: const TextStyle(color: Colors.white),
+                      expands: false,
                   decoration: InputDecoration(
                     labelText: NTexts.confirmPassword,
                     focusedBorder: controller.isRedConfirmPassword.value

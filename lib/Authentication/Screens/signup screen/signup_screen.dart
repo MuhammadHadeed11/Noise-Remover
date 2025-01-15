@@ -5,12 +5,11 @@ class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-        child: Column(
-          children: [
-            SignUpForm(),
-          ],
-        ),
+    return  Column(
+              children: [
+                SignUpForm(),
+              ]
+
     );
   }
 }
